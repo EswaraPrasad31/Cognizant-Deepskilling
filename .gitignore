@@ -1,19 +1,24 @@
-# Compiled Java files
+# Compiled class files
 *.class
+
+# Log files
+*.log
+
+# Maven target directory
+target/
+
+# Eclipse files
+.settings/
+.project
+.classpath
 
 # VS Code
 .vscode/
 
-# IntelliJ
+# IntelliJ IDEA
 .idea/
+*.iml
 
-# Eclipse
-.project
-.classpath
-.settings/
-
-# Build folders
-bin/
-build/
-target/
-out/
+# OS generated files
+.DS_Store
+Thumbs.db
