@@ -1,51 +1,47 @@
-CREATE DATABASE bank_management;
-
-USE bank_management;
-
 CREATE TABLE Customers (
-    CustomerID INT PRIMARY KEY,
-    Name VARCHAR(100),
+    CustomerID NUMBER PRIMARY KEY,
+    Name VARCHAR2(100),
     DOB DATE,
-    Balance DECIMAL(12,2),
-    LastModified DATETIME
+    Balance NUMBER,
+    LastModified DATE
 );
 
 CREATE TABLE Accounts (
-    AccountID INT PRIMARY KEY,
-    CustomerID INT,
-    AccountType VARCHAR(20),
-    Balance DECIMAL(12,2),
-    LastModified DATETIME,
+    AccountID NUMBER PRIMARY KEY,
+    CustomerID NUMBER,
+    AccountType VARCHAR2(20),
+    Balance NUMBER,
+    LastModified DATE,
     FOREIGN KEY (CustomerID)
-        REFERENCES Customers(CustomerID)
+    REFERENCES Customers(CustomerID)
 );
 
 CREATE TABLE Transactions (
-    TransactionID INT PRIMARY KEY,
-    AccountID INT,
-    TransactionDate DATETIME,
-    Amount DECIMAL(12,2),
-    TransactionType VARCHAR(10),
-    FOREIGN KEY (AccountID)
-        REFERENCES Accounts(AccountID)
+    TransactionID NUMBER PRIMARY KEY,
+    AccountID NUMBER,
+    TransactionDate DATE,
+    Amount NUMBER,
+    TransactionType VARCHAR2(10),
+    FOREIGN KEY(AccountID)
+    REFERENCES Accounts(AccountID)
 );
 
 CREATE TABLE Loans (
-    LoanID INT PRIMARY KEY,
-    CustomerID INT,
-    LoanAmount DECIMAL(12,2),
-    InterestRate DECIMAL(5,2),
+    LoanID NUMBER PRIMARY KEY,
+    CustomerID NUMBER,
+    LoanAmount NUMBER,
+    InterestRate NUMBER,
     StartDate DATE,
     EndDate DATE,
-    FOREIGN KEY (CustomerID)
-        REFERENCES Customers(CustomerID)
+    FOREIGN KEY(CustomerID)
+    REFERENCES Customers(CustomerID)
 );
 
 CREATE TABLE Employees (
-    EmployeeID INT PRIMARY KEY,
-    Name VARCHAR(100),
-    Position VARCHAR(50),
-    Salary DECIMAL(12,2),
-    Department VARCHAR(50),
+    EmployeeID NUMBER PRIMARY KEY,
+    Name VARCHAR2(100),
+    Position VARCHAR2(50),
+    Salary NUMBER,
+    Department VARCHAR2(50),
     HireDate DATE
 );
