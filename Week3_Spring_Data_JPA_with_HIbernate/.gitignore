@@ -1,1 +1,10 @@
 /.metadata/
+target/
+.classpath
+.project
+.settings/
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
