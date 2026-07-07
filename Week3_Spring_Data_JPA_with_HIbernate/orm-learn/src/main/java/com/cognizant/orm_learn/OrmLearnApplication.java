@@ -30,7 +30,7 @@ public class OrmLearnApplication {
         try {
             getAllCountriesTest();
         } catch (CountryNotFoundException e) {
-            LOGGER.error("Error retrieving country by code: {}", e.getMessage());
+            LOGGER.error("Error retrieving country by code: S{}", e.getMessage());
         }
 
         // Add a new country to the database
