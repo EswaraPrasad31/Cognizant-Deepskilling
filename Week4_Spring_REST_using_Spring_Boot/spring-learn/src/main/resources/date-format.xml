@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  SPRING XML CONFIGURATION SCHEMA
+  The schema definitions define the structure, tags, and valid attributes that Spring context
+  uses to read, parse, and instantiate the beans declared in this XML file.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 
+      Hands-on 2: SimpleDateFormat Bean Definition
+      
+      Spring Beans:
+      Objects configured and managed by the Spring IoC Container.
+      'id' specifies the reference identifier.
+      'class' defines the target type to instantiate.
+      
+      Constructor Injection:
+      Injects the date pattern "dd/MM/yyyy" via constructor argument.
+    -->
+    <bean id="dateFormat" class="java.text.SimpleDateFormat">
+        <constructor-arg value="dd/MM/yyyy" />
+    </bean>
+
+</beans>
