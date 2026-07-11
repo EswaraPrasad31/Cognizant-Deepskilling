@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  XML Bean Configuration:
+  This XML file acts as the configuration metadata for the Spring Inversion of Control (IoC) Container.
+  It declares which Java objects (beans) should be instantiated, configured, and managed by Spring.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 
+      XML Bean:
+      A bean is an object instantiated, assembled, and managed by the Spring IoC container.
+      - "id" is the unique identifier for the bean.
+      - "class" is the fully qualified name of the Java class.
+      - <property> tags are used for Setter Injection: Spring will invoke the matching setter method 
+        (e.g., setCode, setName) using reflection, passing the specified "value".
+    -->
+
+    <!-- Bean for India -->
+    <bean id="in" class="com.cognizant.springlearn.model.Country">
+        <property name="code" value="IN" />
+        <property name="name" value="India" />
+    </bean>
+
+    <!-- Bean for United States -->
+    <bean id="us" class="com.cognizant.springlearn.model.Country">
+        <property name="code" value="US" />
+        <property name="name" value="United States" />
+    </bean>
+
+    <!-- Bean for Germany -->
+    <bean id="de" class="com.cognizant.springlearn.model.Country">
+        <property name="code" value="DE" />
+        <property name="name" value="Germany" />
+    </bean>
+
+    <!-- Bean for Japan -->
+    <bean id="jp" class="com.cognizant.springlearn.model.Country">
+        <property name="code" value="JP" />
+        <property name="name" value="Japan" />
+    </bean>
+
+    <!-- 
+      Collection Bean Definition:
+      Defines an ArrayList bean containing the references (<ref>) to other beans.
+      - "countryList" will be initialized with the specified country bean references.
+      - This illustrates Dependency Injection using constructor argument insertion.
+    -->
+    <bean id="countryList" class="java.util.ArrayList">
+        <constructor-arg>
+            <list>
+                <ref bean="in" />
+                <ref bean="us" />
+                <ref bean="de" />
+                <ref bean="jp" />
+            </list>
+        </constructor-arg>
+    </bean>
+
+</beans>
