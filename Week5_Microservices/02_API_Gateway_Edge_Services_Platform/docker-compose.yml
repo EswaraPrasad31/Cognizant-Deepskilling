@@ -1,0 +1,114 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-db
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  discovery-server:
+    image: openjdk:21-slim
+    container_name: discovery-server
+    ports:
+      - "8761:8761"
+    volumes:
+      - ./discovery-server/target/discovery-server-1.0.0.jar:/app.jar
+    entrypoint: ["java", "-jar", "/app.jar"]
+    depends_on:
+      - mysql
+
+  auth-server:
+    image: openjdk:21-slim
+    container_name: auth-server
+    ports:
+      - "8000:8000"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/user_db?createDatabaseIfNotExist=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: http://discovery-server:8761/eureka/
+    volumes:
+      - ./auth-server/target/auth-server-1.0.0.jar:/app.jar
+    entrypoint: ["java", "-jar", "/app.jar"]
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  api-gateway:
+    image: openjdk:21-slim
+    container_name: api-gateway
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: http://auth-server:8000/oauth2/jwks
+      EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: http://discovery-server:8761/eureka/
+    volumes:
+      - ./api-gateway/target/api-gateway-1.0.0.jar:/app.jar
+    entrypoint: ["java", "-jar", "/app.jar"]
+    depends_on:
+      - discovery-server
+      - auth-server
+
+  user-service:
+    image: openjdk:21-slim
+    container_name: user-service
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/user_db?createDatabaseIfNotExist=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: http://auth-server:8000/oauth2/jwks
+      EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: http://discovery-server:8761/eureka/
+    volumes:
+      - ./user-service/target/user-service-1.0.0.jar:/app.jar
+    entrypoint: ["java", "-jar", "/app.jar"]
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  product-service:
+    image: openjdk:21-slim
+    container_name: product-service
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/product_db?createDatabaseIfNotExist=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: http://auth-server:8000/oauth2/jwks
+      EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: http://discovery-server:8761/eureka/
+    volumes:
+      - ./product-service/target/product-service-1.0.0.jar:/app.jar
+    entrypoint: ["java", "-jar", "/app.jar"]
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  order-service:
+    image: openjdk:21-slim
+    container_name: order-service
+    ports:
+      - "8083:8083"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/order_db?createDatabaseIfNotExist=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: http://auth-server:8000/oauth2/jwks
+      EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: http://discovery-server:8761/eureka/
+    volumes:
+      - ./order-service/target/order-service-1.0.0.jar:/app.jar
+    entrypoint: ["java", "-jar", "/app.jar"]
+    depends_on:
+      mysql:
+        condition: service_healthy

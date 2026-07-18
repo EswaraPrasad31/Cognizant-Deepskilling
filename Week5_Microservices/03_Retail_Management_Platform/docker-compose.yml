@@ -1,0 +1,48 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: retail-mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - retail-network
+
+  discovery-server:
+    image: openjdk:21-slim
+    container_name: retail-discovery
+    ports:
+      - "8761:8761"
+    networks:
+      - retail-network
+
+  config-server:
+    image: openjdk:21-slim
+    container_name: retail-config
+    ports:
+      - "8888:8888"
+    depends_on:
+      - discovery-server
+    networks:
+      - retail-network
+
+  api-gateway:
+    image: openjdk:21-slim
+    container_name: retail-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - config-server
+    networks:
+      - retail-network
+
+networks:
+  retail-network:
+    driver: bridge

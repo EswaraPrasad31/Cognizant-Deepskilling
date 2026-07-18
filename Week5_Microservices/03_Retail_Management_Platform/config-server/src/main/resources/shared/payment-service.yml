@@ -1,0 +1,34 @@
+server:
+  port: 8086
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/payment_db?createDatabaseIfNotExist=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8000/oauth2/jwks
+resilience4j:
+  circuitbreaker:
+    instances:
+      thirdPartyPayment:
+        slidingWindowSize: 5
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10000
+        permittedNumberOfCallsInHalfOpenState: 3
+  retry:
+    instances:
+      thirdPartyPayment:
+        maxAttempts: 3
+        waitDuration: 1000
+  timelimiter:
+    instances:
+      thirdPartyPayment:
+        timeoutDuration: 2s
