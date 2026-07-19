@@ -1,0 +1,58 @@
+const employees = [
+  {
+    id: 1,
+    name: 'John Doe',
+    designation: 'Senior Developer',
+    department: 'Development',
+    email: 'john.doe@company.com',
+    phone: '9876543210',
+    experience: '6 Years',
+  },
+  {
+    id: 2,
+    name: 'Jane Smith',
+    designation: 'UI/UX Designer',
+    department: 'Design',
+    email: 'jane.smith@company.com',
+    phone: '9123456780',
+    experience: '4 Years',
+  },
+  {
+    id: 3,
+    name: 'David Kumar',
+    designation: 'Project Manager',
+    department: 'Management',
+    email: 'david.kumar@company.com',
+    phone: '9988776655',
+    experience: '10 Years',
+  },
+  {
+    id: 4,
+    name: 'Priya Sharma',
+    designation: 'QA Engineer',
+    department: 'Testing',
+    email: 'priya.sharma@company.com',
+    phone: '9871234560',
+    experience: '3 Years',
+  },
+  {
+    id: 5,
+    name: 'Michael Lee',
+    designation: 'DevOps Engineer',
+    department: 'Infrastructure',
+    email: 'michael.lee@company.com',
+    phone: '9001234567',
+    experience: '7 Years',
+  },
+  {
+    id: 6,
+    name: 'Anjali Nair',
+    designation: 'Business Analyst',
+    department: 'Analytics',
+    email: 'anjali.nair@company.com',
+    phone: '9111222333',
+    experience: '5 Years',
+  },
+];
+
+export default employees;

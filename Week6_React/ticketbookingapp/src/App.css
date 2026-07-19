@@ -1,0 +1,42 @@
+* {
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+.app-btn {
+  background-color: #d3d3d3;
+  border: 1px solid #999999;
+  border-radius: 0;
+  color: black;
+  font-size: 15px;
+  width: 70px;
+  height: 32px;
+  cursor: pointer;
+}
+
+.app-btn:hover {
+  background-color: #bfbfbf;
+}
+
+.flight-table {
+  border-collapse: collapse;
+  font-size: 16px;
+}
+
+.flight-table th,
+.flight-table td {
+  border: 1px solid gray;
+  padding: 6px 14px;
+  text-align: left;
+}
+
+.flight-table th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}

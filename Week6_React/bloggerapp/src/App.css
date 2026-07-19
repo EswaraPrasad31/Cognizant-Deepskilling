@@ -1,0 +1,37 @@
+* {
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 70px;
+  margin-top: 70px;
+}
+
+.panel {
+  width: 250px;
+}
+
+.panel-heading {
+  font-size: 34px;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.separator {
+  width: 4px;
+  height: 220px;
+  background-color: darkgreen;
+  margin-top: 10px;
+}

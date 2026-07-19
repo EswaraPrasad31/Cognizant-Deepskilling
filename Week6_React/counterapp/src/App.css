@@ -1,0 +1,40 @@
+* {
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+}
+
+.counter-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 180px;
+  margin-top: 250px;
+}
+
+.counter-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.counter-btn {
+  background-color: #90EE90;
+  border: 2px solid darkgreen;
+  border-radius: 4px;
+  color: black;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 6px 14px;
+  cursor: pointer;
+}
+
+.counter-text {
+  font-size: 18px;
+  color: black;
+}

@@ -1,0 +1,92 @@
+* {
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+.mail-app {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.app-title {
+  color: #002b66;
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.form-container {
+  width: 420px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  padding: 30px;
+  background-color: #ffffff;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-label {
+  display: block;
+  font-size: 18px;
+  color: #000000;
+  margin-bottom: 6px;
+}
+
+.form-control {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #a6a6a6;
+  border-radius: 3px;
+  padding: 8px 12px;
+  font-size: 16px;
+  background-color: #ffffff;
+  outline: none;
+}
+
+.form-control:focus {
+  border-color: #0066cc;
+}
+
+.input-error {
+  border-color: red;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.register-btn {
+  background-color: #0066cc;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 16px;
+  height: 42px;
+  width: 150px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.register-btn:hover {
+  background-color: #004c99;
+}

@@ -1,0 +1,39 @@
+* {
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #ffffff;
+  margin: 0;
+  padding: 20px;
+  color: black;
+}
+
+.heading {
+  font-size: 33px;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 10px;
+}
+
+.player-list {
+  font-size: 18px;
+  list-style-type: disc;
+  padding-left: 30px;
+  margin: 0;
+}
+
+.player-list li {
+  margin-bottom: 8px;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid #cccccc;
+  margin: 20px 0;
+}
+
+.section-gap {
+  margin-top: 20px;
+}
